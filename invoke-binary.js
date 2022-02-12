@@ -1,18 +1,9 @@
 const process = require("process");
 const childProcess = require("child_process");
 
-function chooseBinary() {
-  console.log(`Platform: ${process.platform}`);
-  console.log(`Arch: ${process.arch}`);
+console.log(`Platform: ${process.platform}`);
+console.log(`Arch: ${process.arch}`);
 
-  // if (platform === "linux" && arch === "x64") {
-  //   return `main-linux-amd64-${VERSION}`;
-  // }
+const spawnSyncReturns = childProcess.spawnSync(`${__dirname}/bin/golang-action`, { stdio: "inherit" });
 
-  return "bin/golang-action";
-}
-
-const binary = chooseBinary();
-const mainScript = `${__dirname}/${binary}`;
-const spawnSyncReturns = childProcess.spawnSync(mainScript, { stdio: "inherit" });
 console.log(`Binary exit code: ${spawnSyncReturns.status}`);
