@@ -16,6 +16,8 @@ function getBinaryPath() {
     console.error(`Unsupported platform: ${process.platform} or architecture: ${process.arch}`);
     process.exit(1);
   }
+
+  return binaryPath;
 }
 
 const binaryPath = getBinaryPath();
