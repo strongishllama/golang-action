@@ -1,9 +1,9 @@
 const process = require("process");
 const childProcess = require("child_process");
 
-console.log(`Platform: ${process.platform}`);
-console.log(`Arch: ${process.arch}`);
+const binaryPath = `${__dirname}/bin/golang-action-${process.platform}-${process.arch}`;
+console.log(`Executing binary at: ${binaryPath}`);
 
-const spawnSyncReturns = childProcess.spawnSync(`${__dirname}/bin/golang-action`, { stdio: "inherit" });
+const spawnSyncReturns = childProcess.spawnSync(binaryPath, { stdio: "inherit" });
 
 console.log(JSON.stringify(spawnSyncReturns));
