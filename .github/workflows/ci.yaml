@@ -22,7 +22,7 @@ jobs:
     name: Lint
     uses: strongishllama/github-actions/.github/workflows/golang-lint.yaml@main
   generate-readme:
-    if: github.ref == "refs/heads/main" && github.event_name == "push"
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs:
       - lint
     name: Generate Readme
@@ -45,7 +45,7 @@ jobs:
           commit_user_email: github-actions@millhouse.dev
           file_pattern: README.md
   build-binaries:
-    if: github.ref == "refs/heads/main" && github.event_name == "push"
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs:
       - lint
     name: Build Binaries
