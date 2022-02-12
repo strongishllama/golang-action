@@ -15,4 +15,4 @@ function chooseBinary() {
 const binary = chooseBinary();
 const mainScript = `${__dirname}/${binary}`;
 const spawnSyncReturns = childProcess.spawnSync(mainScript, { stdio: "inherit" });
-console.log(`Return: ${spawnSyncReturns}`);
+console.log(`Return: ${spawnSyncReturns.stdout.toString()}`);
