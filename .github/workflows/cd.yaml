@@ -30,7 +30,7 @@ jobs:
       new_version: ${{ steps.bump-version.outputs.new_version }}
       changelog: ${{ steps.bump-version.outputs.changelog }}
   release:
-    if: needs.bump-version.outputs.new_version
+    # if: needs.bump-version.outputs.new_version
     needs:
       - bump-version
     name: Release
