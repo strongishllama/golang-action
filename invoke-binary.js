@@ -1,7 +1,7 @@
 function chooseBinary() {
-  console.log(`Platform: ${platform}`);
-  console.log(`Arch: ${arch}`);
-  console.log(`Version: ${VERSION}`);
+  console.log(`Platform: ${platform ?? ""}`);
+  console.log(`Arch: ${arch ?? ""}`);
+  console.log(`Version: ${VERSION ?? ""}`);
 
   // if (platform === "linux" && arch === "x64") {
   //   return `main-linux-amd64-${VERSION}`;
