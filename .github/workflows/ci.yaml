@@ -81,7 +81,7 @@ jobs:
       - name: Create Release
         run: |
           if [[ v$(autotag -n) == *"v0."* ]]; then
-            gh release create $(autotag -n) --generate-notes --pre-release
+            gh release create $(autotag -n) --generate-notes --prerelease
           else
             gh release create $(autotag -n) --generate-notes
           fi
