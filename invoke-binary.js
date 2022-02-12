@@ -8,7 +8,7 @@ function debugLog(message) {
 }
 
 function getBinaryPath() {
-  let binaryPath = `${__dirname}/bin/golang-action-${process.platform}-`;
+  let binaryPath = `${__dirname}/bin/action-${process.platform}-`;
 
   if (process.platform === "linux" && process.arch === "x64") {
     binaryPath += "amd64";

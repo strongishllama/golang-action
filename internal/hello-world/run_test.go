@@ -8,7 +8,7 @@ func TestRun(t *testing.T) {
 	// // ...
 	// actionLog := bytes.NewBuffer(nil)
 	// envMap := map[string]string{
-	// 	"INPUT_ROLE":           "user",
+	// 	"INPUT_EXAMOKE_INPUT":  "user",
 	// 	"INPUT_LEASE-DURATION": "1h",
 	// }
 	// getenv := func(key string) string {
