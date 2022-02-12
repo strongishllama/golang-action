@@ -11,10 +11,7 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Lint
-        uses: strongishllama/github-actions/.github/workflows/golang-lint.yaml@main
+    uses: strongishllama/github-actions/.github/workflows/golang-lint.yaml@main
   build-binaries:
     name: Build Binaries
     runs-on: ubuntu-latest
