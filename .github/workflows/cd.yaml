@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    if: "!contains(${GITHUB_REF#refs/*/}, 'v0.'')"
+    if: contains(${GITHUB_REF#refs/*/}, "v0.") == false
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -16,7 +16,7 @@ jobs:
       - name: Create Release
         run: gh release create ${GITHUB_REF#refs/*/} --generate-notes
   pre-release:
-    if: contains(${GITHUB_REF#refs/*/}, 'v0.'')
+    if: contains(${GITHUB_REF#refs/*/}, "v0.") == true
     name: Pre-Release
     runs-on: ubuntu-latest
     steps:
