@@ -26,6 +26,10 @@ jobs:
           fetch_all_tags: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: main
+      - name: Echo Changelog
+        run: echo ${{ steps.bump-version.outputs.changelog }}
+      - name: Echo new_version
+        run: echo ${{ steps.bump-version.outputs.new_version }}
     outputs:
       new_version: ${{ steps.bump-version.outputs.new_version }}
       changelog: ${{ steps.bump-version.outputs.changelog }}
@@ -38,14 +42,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Generate Changelog
-        run: echo "${{ needs.bump-version.outputs.changelog }}" >> /tmp/CHANGELOG.md
-      - name: Generate New Version
-        run: echo "${{ needs.bump-version.outputs.new_version }}" >> /tmp/VERSION.md
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifacts
-          path: |
-            /tmp/CHANGELOG.md
-            /tmp/VERSION.md
+      - name: Echo Changelog
+        run: echo "${{ needs.bump-version.outputs.changelog }}"
+      - name: Echo New Version
+        run: echo "${{ needs.bump-version.outputs.new_version }}"
