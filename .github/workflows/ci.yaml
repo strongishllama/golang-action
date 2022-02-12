@@ -13,6 +13,8 @@ jobs:
     name: Lint
     uses: strongishllama/github-actions/.github/workflows/golang-lint.yaml@main
   build-binaries:
+    needs:
+      - lint
     name: Build Binaries
     runs-on: ubuntu-latest
     steps:
