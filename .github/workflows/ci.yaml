@@ -85,3 +85,5 @@ jobs:
           else
             gh release create $(autotag -n) --generate-notes
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
