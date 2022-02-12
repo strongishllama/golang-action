@@ -6,5 +6,4 @@ console.log(`Arch: ${process.arch}`);
 
 const spawnSyncReturns = childProcess.spawnSync(`${__dirname}/bin/golang-action`, { stdio: "inherit" });
 
-console.log(`Binary exit code: ${spawnSyncReturns.status}`);
 console.log(JSON.stringify(spawnSyncReturns));
