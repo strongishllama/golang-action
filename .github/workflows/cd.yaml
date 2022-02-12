@@ -30,6 +30,12 @@ jobs:
         run: echo ${{ steps.bump-version.outputs.changelog }}
       - name: Echo new_version
         run: echo ${{ steps.bump-version.outputs.new_version }}
+      - name: Echo new_tag
+        run: echo ${{ steps.bump-version.outputs.new_tag }}
+      - name: Echo previous_tag
+        run: echo ${{ steps.bump-version.outputs.previous_tag }}
+      - name: Echo release_type
+        run: echo ${{ steps.bump-version.outputs.release_type }}
     outputs:
       new_version: ${{ steps.bump-version.outputs.new_version }}
       changelog: ${{ steps.bump-version.outputs.changelog }}
