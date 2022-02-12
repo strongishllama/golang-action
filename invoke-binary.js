@@ -14,3 +14,7 @@ console.log(`Executing binary at: ${binaryPath}`);
 const spawnSyncReturns = childProcess.spawnSync(binaryPath, { stdio: "inherit" });
 
 console.log(JSON.stringify(spawnSyncReturns));
+
+if (spawnSyncReturns.status !== 0) {
+  process.exit(spawnSyncReturns.exit);
+}
