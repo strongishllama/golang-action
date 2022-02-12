@@ -1,6 +1,12 @@
 const process = require("process");
 const childProcess = require("child_process");
 
+// function debugLog(message) {
+//   if (process.env["ACTIONS_STEP_DEBUG"]) {
+//     console.debug()
+//   }
+// }
+
 let binaryPath = `${__dirname}/bin/golang-action-${process.platform}-`;
 
 if (process.platform === "linux" && process.arch === "x64") {
@@ -9,11 +15,11 @@ if (process.platform === "linux" && process.arch === "x64") {
   console.error(`Unsupported platform: ${process.platform} or architecture: ${process.arch}`);
 }
 
-console.log(`Executing binary at: ${binaryPath}`);
+console.debug(`Executing binary at: ${binaryPath}`);
 
 const spawnSyncReturns = childProcess.spawnSync(binaryPath, { stdio: "inherit" });
 
-console.log(JSON.stringify(spawnSyncReturns));
+console.debug(JSON.stringify(spawnSyncReturns));
 
 if (spawnSyncReturns.status !== 0) {
   process.exit(1);
