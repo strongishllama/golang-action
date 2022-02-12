@@ -4,14 +4,45 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - bin/**
+      - **.md
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - bin/**
+      - **.md
+
+env:
+  GO_VERSION: ^1.17
 
 jobs:
   lint:
     name: Lint
     uses: strongishllama/github-actions/.github/workflows/golang-lint.yaml@main
+  update-readme:
+    needs:
+      - lint
+    name: Update Readme
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Update Readme
+        run: |
+          curl -Lo ./gha-docs.tar.gz https://github.com/matty-rose/gha-docs/releases/download/v0.15.2/gha-docs-v0.15.2-linux-amd64.tar.gz
+          tar -xzf gha-docs.tar.gz
+          chmod +x gha-docs
+          ./gha-docs generate -i -o README.md action.yaml
+      - name: Commit Readme
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: "docs: automated update of README.md"
+          commit_user_name: GitHub Actions
+          commit_user_email: github-actions@millhouse.dev
+          file_pattern: README.md
   build-binaries:
     needs:
       - lint
@@ -23,7 +54,7 @@ jobs:
       - name: Setup Golang
         uses: actions/setup-go@v2
         with:
-          go-version: ^1.17
+          go-version: ${{ env.GO_VERSION }}
       - name: Build Binaries
         run: ./build-all.sh
       - name: Commit Binaries
