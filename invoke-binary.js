@@ -1,7 +1,8 @@
+import * as process from "process";
+
 function chooseBinary() {
-  console.log(`Platform: ${platform ?? ""}`);
-  console.log(`Arch: ${arch ?? ""}`);
-  console.log(`Version: ${VERSION ?? ""}`);
+  console.log(`Platform: ${process.platform}`);
+  console.log(`Arch: ${process.arch}`);
 
   // if (platform === "linux" && arch === "x64") {
   //   return `main-linux-amd64-${VERSION}`;
