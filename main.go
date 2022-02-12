@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	githubactions "github.com/sethvargo/go-githubactions"
+	"github.com/sethvargo/go-githubactions"
 
 	helloworld "github.com/strongishllama/golang-action/internal/hello-world"
 )
