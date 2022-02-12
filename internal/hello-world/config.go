@@ -10,5 +10,6 @@ type config struct {
 func NewConfig(action *githubactions.Action) (config, error) {
 	return config{
 		ExampleInput: action.GetInput("example-input"),
+		action:       action,
 	}, nil
 }
