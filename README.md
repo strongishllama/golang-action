@@ -1,9 +1,4 @@
 # Golang Action
-
-A template repository for writing custom GitHub Actions in Golang. The idea for this template repository came from this [article](https://full-stack.blend.com/how-we-write-github-actions-in-go.html).
-
-<!-- BEGIN GHA DOCS -->
-# Golang Action
 A template repository for writing custom GitHub Actions in Golang.
 
 ## Inputs
@@ -25,4 +20,3 @@ No external actions.
     # An example input to use in your action.
     example-input:
 ```
-<!-- END GHA DOCS -->
