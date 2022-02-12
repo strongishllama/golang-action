@@ -1,4 +1,4 @@
-import * as process from "process";
+const process = require("process");
 
 function chooseBinary() {
   console.log(`Platform: ${process.platform}`);
