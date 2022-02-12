@@ -21,26 +21,15 @@ jobs:
         id: bump-version
         uses: mathieudutour/github-tag-action@v6.0
         with:
-          # default_bump: false
-          # dry_run: true
+          default_bump: false
           fetch_all_tags: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: main
-      - name: Echo Changelog
-        run: echo ${{ steps.bump-version.outputs.changelog }}
-      - name: Echo new_version
-        run: echo ${{ steps.bump-version.outputs.new_version }}
-      - name: Echo new_tag
-        run: echo ${{ steps.bump-version.outputs.new_tag }}
-      - name: Echo previous_tag
-        run: echo ${{ steps.bump-version.outputs.previous_tag }}
-      - name: Echo release_type
-        run: echo ${{ steps.bump-version.outputs.release_type }}
     outputs:
       new_version: ${{ steps.bump-version.outputs.new_version }}
       changelog: ${{ steps.bump-version.outputs.changelog }}
   release:
-    # if: needs.bump-version.outputs.new_version
+    if: needs.bump-version.outputs.new_version
     needs:
       - bump-version
     name: Release
@@ -48,7 +37,15 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Echo Changelog
-        run: echo "${{ needs.bump-version.outputs.changelog }}"
-      - name: Echo New Version
-        run: echo "${{ needs.bump-version.outputs.new_version }}"
+        with:
+          fetch-depth: "0"
+      - name: Generate Changelog
+        run: echo "${{ needs.bump-version.outputs.changelog }}" >> /tmp/CHANGELOG.md
+      - name: Setup Golang
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.17
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          args: release --rm-dist
